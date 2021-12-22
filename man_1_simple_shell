@@ -1,0 +1,129 @@
+.TH hsh 1 "November 22, 2020" "hsh" "hsh man page"
+.SH NAME
+.B
+hsh - command interpreter (shell)
+.SH SYNOPSIS
+.B
+hsh [\fIargument ...\fP]
+.SH DESCRIPTION
+.B
+Holberton  project. Coding the (almost) same shell as the original sh (BOURNE SHELL).
+.SS Overview
+.B
+The shell is a command that reads lines from either a file (non-interactive mode) or the terminal (interactive mode), interprets them, and generally executes other commands.
+.SS Path Search
+.B
+When locating a command, the shell first looks to see if it has a shell function by that name. Then it looks for a builtin command by that name.  If a builtin command is not found, one of two things happen:
+.TP
+1.
+.B
+Command names containing a slash are simply executed without performing any searches.
+.TP
+2.
+.B
+The shell searches each entry in PATH in turn for the command. The value of the PATH variable should be a series of entries separated by colons. Each entry consists of a directory name.
+.SS Builtins
+.B
+This section lists the builtin commands which are builtin because they need to perform some operation that can't be performed by a separate process.
+.B
+.TP
+.B
+cd [\fIdirectory\fP]
+.B
+Switch to the specified directory (default HOME).  If an entry for CDPATH appears in the environment of the cd command or the shell variable CDPATH is set and the directory name does not begin with a slash, then the directories listed in CDPATH will be searched for the specified directory. The format of CDPATH is the same as that of PATH. If a single dash is specified as the argument, it will be replaced by the value of OLDPWD. The cd command will print out the name of the directory that it actually switched to if this is different from the name that the user gave. These may be different either because the CDPATH mechanism was used or because the argument is a single dash.
+.TP
+.B
+exit [\fIexitstatus\fP]
+.B
+Terminate the shell process. If \fIexitstatus\fP is given it is used as the exit status of the shell; otherwise the exit status of the preceding command is used.
+.TP
+.B
+setenv [\fIname\fP] [\fIvalue\fP]
+.B
+Initialize a new enviromnent variable \fIname\fP with its \fIvalue\fP or modify an existing one.
+.TP
+.B
+unsetenv [\fIname\fP]
+.B
+Remove an environment variable \fIname\fP.
+.SH EXIT STATUS
+.B
+Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status. If the shell is not an interactive shell, the execution of the shell file will be aborted. Otherwise the shell will return the exit status of the last command executed, or if the exit builtin is used with a numeric argument, it will return the argument.
+.SH ENVIRONMENT
+.TP
+.B
+HOME
+.B
+Set automatically by login(1) from the user's login directory in the password file (passwd(4)). This environment variable also functions as the default argument for the cd builtin.
+.TP
+.B
+PATH
+.B
+The default search path for executables. See the above section \fIPath Search\fP.
+.TP
+.B
+CDPATH
+.B
+The search path used with the cd builtin.
+.TP
+.B
+PWD
+.B
+The logical value of the current working directory. This is set by the cd command.
+.TP
+.B
+OLDPWD
+.B
+The previous logical value of the current working directory. This is set by the cd command.
+.SH SEE ALSO
+.B
+sh(1)
+.SH BUGS
+.B
+No bug found.
+.SH EXAMPLES
+.TP
+.B
+1. PWD
+.SS
+old_prompt$ ./hsh
+.SS
+$ _
+.SS
+$ pwd
+.SS
+$ print/the/current/working/directory 
+.TP
+.B
+2. EXIT
+.SS
+old_prompt$ ./hsh
+.SS
+$ _
+.SS
+$ exit
+.SS
+old_prompt$ _
+.TP
+.B
+3. SETENV
+.SS
+old_prompt$ ./hsh
+.SS
+$ _
+.SS
+$ setenv hello world
+.SS
+$ env
+.SS
+env1=...
+.SS
+env2=...
+.SS
+...
+.SS
+envX=...
+.SS
+hello=world
+.SS
+$ _
