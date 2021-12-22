@@ -29,4 +29,5 @@
 
 
 ### Contributors
-Sochima Obele(https://www.github.com/sosochukwuma) & Sumeiya Juma (http://www.github.com/ThibaudP)
+Sochima Obele(https://www.github.com/sosochukwuma)
+-
